@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://base creatures/catterpillar/Catterpillar creature.gd" type="Script" id=1]
+[ext_resource path="res://body/catterpillar/head.tscn" type="PackedScene" id=2]
+[ext_resource path="res://body/catterpillar/Body.tscn" type="PackedScene" id=3]
+[ext_resource path="res://body/freak test/BodyFreak.tscn" type="PackedScene" id=4]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="head" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0.840904, 1.26135 )
+
+[node name="Timer_head" type="Timer" parent="."]
+one_shot = true
+
+[node name="Catterpillar body" parent="." instance=ExtResource( 3 )]
+position = Vector2( 41.5774, 1.25992 )
+
+[node name="Timer_seg1" type="Timer" parent="."]
+one_shot = true
+
+[node name="Catterpillar body2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 77.2628, 0.839474 )
+
+[node name="Timer_seg2" type="Timer" parent="."]
+one_shot = true
+
+[node name="Catterpillar body3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 111.265, 1.2585 )
+
+[node name="Timer_seg3" type="Timer" parent="."]
+one_shot = true
+
+[node name="FreakBody" parent="." instance=ExtResource( 4 )]
+position = Vector2( 145.896, 1.26134 )
+
+[node name="Timer_seg4" type="Timer" parent="."]
+one_shot = true
+
+[node name="Reset_timer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="Timer_head" to="head" method="_on_Timer_head_timeout"]
+[connection signal="timeout" from="Timer_seg1" to="Catterpillar body" method="_on_Timer_seg1_timeout"]
+[connection signal="timeout" from="Timer_seg2" to="Catterpillar body2" method="_on_Timer_seg2_timeout"]
+[connection signal="timeout" from="Timer_seg3" to="Catterpillar body3" method="_on_Timer_seg3_timeout"]
+[connection signal="timeout" from="Timer_seg4" to="FreakBody" method="_on_Timer_seg4_timeout"]
+[connection signal="timeout" from="Reset_timer" to="." method="_on_Reset_timer_timeout"]

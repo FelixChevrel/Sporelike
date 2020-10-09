@@ -19,6 +19,10 @@ config/name="Sporelike"
 run/main_scene="res://Sporelikescene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Singleton="*res://Singleton.gd"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

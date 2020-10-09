@@ -29,6 +29,11 @@ onready var body_array = ["res://sprite/Catterpillar body.png", "res://sprite/ch
 onready var leg_array = ["res://sprite/catterpillar leg.png", "res://sprite/chicken leg 1.png", "res://sprite/goat legs.png"]
 						#["res://sprite/chicken leg 1.png","res://sprite/chickenleg2.png"]]
 
+# an array that contain the speed of each legs. 
+# we assume that the base creature leg is the one that is refer by the number, instead of the body type.
+onready var leg_speed_array = [100, 200, 300]
 
+# an array that contain the animation reference of the legs.
+onready var leg_anim_array = ["", "", ""]
 
 

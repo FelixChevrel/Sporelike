@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://base creatures/Creature_body.gd" type="Script" id=1]
 [ext_resource path="res://sprite/Catterpillar body.png" type="Texture" id=2]
 [ext_resource path="res://sprite/catterpillar leg.png" type="Texture" id=3]
 [ext_resource path="res://sprite/catterpillar head.png" type="Texture" id=4]
 
-[node name="body" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13.6723, 10 )
+
+[node name="body" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
 [node name="Head_link" type="Node2D" parent="."]
@@ -22,7 +25,7 @@ position = Vector2( 0.165024, -0.165016 )
 texture = ExtResource( 2 )
 
 [node name="Leg1" type="Sprite" parent="segment_link/segment 1"]
-position = Vector2( 0, 28.5732 )
+position = Vector2( -0.15749, 25.7384 )
 texture = ExtResource( 3 )
 
 [node name="segment_link2" type="Node2D" parent="."]
@@ -33,7 +36,7 @@ position = Vector2( 0.0222702, 0 )
 texture = ExtResource( 2 )
 
 [node name="Leg2" type="Sprite" parent="segment_link2/segment 2"]
-position = Vector2( 0, 27.3827 )
+position = Vector2( 0, 25.4928 )
 texture = ExtResource( 3 )
 
 [node name="segment_link3" type="Node2D" parent="."]
@@ -43,6 +46,10 @@ position = Vector2( 108, 0 )
 position = Vector2( 0.0536652, -0.044548 )
 texture = ExtResource( 2 )
 
-[node name="leg3" type="Sprite" parent="segment_link3/Segment3"]
-position = Vector2( -0.793701, 26.589 )
+[node name="Leg3" type="Sprite" parent="segment_link3/Segment3"]
+position = Vector2( 0.50631, 25.0649 )
 texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.26231, -0.087101 )
+shape = SubResource( 1 )

@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://base creatures/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprite/background.png" type="Texture" id=2]
 [ext_resource path="res://quit.gd" type="Script" id=3]
+[ext_resource path="res://Sporelikescene.gd" type="Script" id=4]
+[ext_resource path="res://new position.gd" type="Script" id=5]
+[ext_resource path="res://new position4.gd" type="Script" id=6]
+[ext_resource path="res://new position3.gd" type="Script" id=7]
+[ext_resource path="res://new position2.gd" type="Script" id=8]
 
 [node name="game" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="background" type="Sprite" parent="."]
 modulate = Color( 0.576471, 0.576471, 0.576471, 1 )
@@ -16,20 +22,53 @@ texture = ExtResource( 2 )
 position = Vector2( 435, 463 )
 
 [node name="change head" type="Button" parent="."]
-margin_left = 3.0
-margin_top = 79.0
-margin_right = 96.0
-margin_bottom = 116.0
+margin_left = 45.2074
+margin_top = 79.63
+margin_right = 138.207
+margin_bottom = 116.63
 text = "Change head"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Rotate head" type="Button" parent="change head"]
+margin_left = 94.3281
+margin_top = 9.02373
+margin_right = 147.328
+margin_bottom = 29.0237
+text = "Rotate"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="new position" type="Button" parent="change head"]
+margin_left = 166.598
+margin_top = -15.1453
+margin_right = 291.598
+margin_bottom = 4.85472
+text = "Custom position"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coordinate x" type="LineEdit" parent="change head/new position"]
+margin_left = 1.7818
+margin_top = 22.2725
+margin_right = 59.7818
+margin_bottom = 46.2725
+
+[node name="coordinate y" type="LineEdit" parent="change head/new position"]
+margin_left = 64.1447
+margin_top = 22.2725
+margin_right = 122.145
+margin_bottom = 46.2725
+
 [node name="change seg1" type="Button" parent="."]
-margin_left = 45.0
-margin_top = 125.0
-margin_right = 136.0
-margin_bottom = 158.0
+margin_left = 47.9966
+margin_top = 166.953
+margin_right = 138.997
+margin_bottom = 199.953
 text = "change seg1"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -47,11 +86,46 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Rotate seg1" type="Button" parent="change seg1"]
+anchor_right = 0.74
+anchor_bottom = 0.5
+margin_left = 92.919
+margin_top = 7.14761
+margin_right = 78.579
+margin_bottom = 10.6476
+text = "Rotate"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="new position2" type="Button" parent="change seg1"]
+margin_left = 165.928
+margin_top = 13.0135
+margin_right = 290.928
+margin_bottom = 33.0135
+text = "Custom position"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coordinate x" type="LineEdit" parent="change seg1/new position2"]
+margin_left = 1.7818
+margin_top = 22.2725
+margin_right = 59.7818
+margin_bottom = 46.2725
+
+[node name="coordinate y" type="LineEdit" parent="change seg1/new position2"]
+margin_left = 64.1447
+margin_top = 22.2725
+margin_right = 122.145
+margin_bottom = 46.2725
+
 [node name="change seg2" type="Button" parent="."]
-margin_left = 44.0
-margin_top = 207.0
-margin_right = 135.0
-margin_bottom = 240.0
+margin_left = 45.4983
+margin_top = 278.919
+margin_right = 136.498
+margin_bottom = 311.919
 text = "change seg2"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -66,17 +140,52 @@ margin_right = 45.983
 margin_bottom = 9.992
 text = "change leg 2"
 
+[node name="Rotate seg2" type="Button" parent="change seg2"]
+anchor_right = 0.74
+anchor_bottom = 0.5
+margin_left = 94.7599
+margin_top = 6.29411
+margin_right = 80.4199
+margin_bottom = 9.79411
+text = "Rotate"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="new position3" type="Button" parent="change seg2"]
+margin_left = 162.069
+margin_top = 10.1721
+margin_right = 287.069
+margin_bottom = 30.1721
+text = "Custom position"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coordinate x" type="LineEdit" parent="change seg2/new position3"]
+margin_left = 1.7818
+margin_top = 22.2725
+margin_right = 59.7818
+margin_bottom = 46.2725
+
+[node name="coordinate y" type="LineEdit" parent="change seg2/new position3"]
+margin_left = 64.1447
+margin_top = 22.2725
+margin_right = 122.145
+margin_bottom = 46.2725
+
 [node name="change seg3" type="Button" parent="."]
-margin_left = 42.0
-margin_top = 276.0
-margin_right = 133.0
-margin_bottom = 309.0
+margin_left = 39.0034
+margin_top = 373.39
+margin_right = 130.003
+margin_bottom = 406.39
 text = "change seg3"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="change seg3"]
+[node name="change seg3" type="Button" parent="change seg3"]
 anchor_right = 1.44
 anchor_bottom = 2.212
 margin_left = 66.0
@@ -87,6 +196,41 @@ text = "change leg 3"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Rotate seg3" type="Button" parent="change seg3"]
+anchor_right = 0.74
+anchor_bottom = 0.5
+margin_left = 95.0781
+margin_top = 6.66806
+margin_right = 80.7381
+margin_bottom = 10.1681
+text = "Rotate"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="new position4" type="Button" parent="change seg3"]
+margin_left = 175.427
+margin_top = 6.04248
+margin_right = 300.427
+margin_bottom = 26.0425
+text = "Custom position"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coordinate x" type="LineEdit" parent="change seg3/new position4"]
+margin_left = 1.7818
+margin_top = 22.2725
+margin_right = 59.7818
+margin_bottom = 46.2725
+
+[node name="coordinate y" type="LineEdit" parent="change seg3/new position4"]
+margin_left = 64.1447
+margin_top = 22.2725
+margin_right = 122.145
+margin_bottom = 46.2725
 
 [node name="Change body type" type="Button" parent="."]
 margin_left = 3.0
@@ -99,20 +243,61 @@ __meta__ = {
 }
 
 [node name="quit" type="Button" parent="."]
-margin_left = 977.0
-margin_top = 556.0
-margin_right = 1014.0
-margin_bottom = 582.0
+margin_left = 979.67
+margin_top = 74.1228
+margin_right = 1016.67
+margin_bottom = 100.123
 text = "quit"
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="movement test" type="Button" parent="."]
+margin_left = 882.469
+margin_top = 12.0208
+margin_right = 993.469
+margin_bottom = 32.0208
+text = "movement test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="movement test end" type="Button" parent="."]
+margin_left = 882.469
+margin_top = 36.7696
+margin_right = 1020.47
+margin_bottom = 56.7696
+disabled = true
+text = "Movement test end"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="end_test_sig" from="." to="body" method="_on_game_end_test_sig"]
+[connection signal="test_sig" from="." to="body" method="_on_game_test_sig"]
 [connection signal="pressed" from="change head" to="body" method="_on_change_head_pressed"]
+[connection signal="pressed" from="change head/Rotate head" to="body" method="_on_Rotate_head_pressed"]
+[connection signal="new_position" from="change head/new position" to="body" method="_on_new_position_new_position"]
+[connection signal="text_entered" from="change head/new position/coordinate x" to="change head/new position" method="_on_coordinate_x_text_entered"]
+[connection signal="text_entered" from="change head/new position/coordinate y" to="change head/new position" method="_on_coordinate_y_text_entered"]
 [connection signal="pressed" from="change seg1" to="body" method="_on_change_seg1_pressed"]
 [connection signal="pressed" from="change seg1/change leg 1" to="body" method="_on_change_leg_1_pressed"]
+[connection signal="pressed" from="change seg1/Rotate seg1" to="body" method="_on_Rotate_seg1_pressed"]
+[connection signal="new_position" from="change seg1/new position2" to="body" method="_on_new_position2_new_position"]
+[connection signal="text_entered" from="change seg1/new position2/coordinate x" to="change seg1/new position2" method="_on_coordinate_x_text_entered"]
+[connection signal="text_entered" from="change seg1/new position2/coordinate y" to="change seg1/new position2" method="_on_coordinate_y_text_entered"]
 [connection signal="pressed" from="change seg2" to="body" method="_on_change_seg2_pressed"]
 [connection signal="pressed" from="change seg2/change leg 2" to="body" method="_on_change_leg_2_pressed"]
+[connection signal="pressed" from="change seg2/Rotate seg2" to="body" method="_on_Rotate_seg2_pressed"]
+[connection signal="new_position" from="change seg2/new position3" to="body" method="_on_new_position3_new_position"]
+[connection signal="text_entered" from="change seg2/new position3/coordinate x" to="change seg2/new position3" method="_on_coordinate_x_text_entered"]
+[connection signal="text_entered" from="change seg2/new position3/coordinate y" to="change seg2/new position3" method="_on_coordinate_y_text_entered"]
 [connection signal="pressed" from="change seg3" to="body" method="_on_change_seg3_pressed"]
-[connection signal="pressed" from="change seg3/Button" to="body" method="_on_Button_pressed"]
+[connection signal="pressed" from="change seg3/change seg3" to="body" method="_on_Button_pressed"]
+[connection signal="pressed" from="change seg3/Rotate seg3" to="body" method="_on_Rotate_seg3_pressed"]
+[connection signal="new_position" from="change seg3/new position4" to="body" method="_on_new_position4_new_position"]
+[connection signal="text_entered" from="change seg3/new position4/coordinate x" to="change seg3/new position4" method="_on_coordinate_x_text_entered"]
+[connection signal="text_entered" from="change seg3/new position4/coordinate y" to="change seg3/new position4" method="_on_coordinate_y_text_entered"]
 [connection signal="pressed" from="Change body type" to="body" method="_on_Change_body_type_pressed"]
+[connection signal="pressed" from="movement test" to="." method="_on_movement_test_pressed"]
+[connection signal="pressed" from="movement test end" to="." method="_on_movement_test_end_pressed"]

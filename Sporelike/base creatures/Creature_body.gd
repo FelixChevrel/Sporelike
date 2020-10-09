@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 
 # give the bodytype_index, as per explained in the "singleton" class. By default, it's 0
 var bodytype_index = 0
@@ -34,6 +34,21 @@ var demanded_sprite
 # var that allow to change the location of the sprites.
 var demanded_x
 var demanded_y
+
+# var that is used to calculate the movement speed of the creature
+var current_speed = 0
+var demanded_speed 
+
+# var that is used to calculate the jump height of the creature
+var current_jump = 0
+
+# var that allow or block movements.
+onready var is_tested = false
+
+onready var gravity = 0.5 
+
+var velocity = Vector2()
+##############################################Separation between variables and functions
 
 func _ready():
 	#body length
@@ -119,6 +134,10 @@ func switch_body(index):
 # allow to change the base body type of the creature.
 func switch_body_type():
 	
+	# reset rotation
+	for x in range(0, segments.size()):
+		rotate_reset(x)
+	
 	# rise up the "bodytype index"
 	bodytype_index += 1
 	if (bodytype_index >= Singleton.body_type_legnth.size()):
@@ -184,6 +203,36 @@ func switch_leg(index):
 		#set the sprite
 		segments[index].get_child(0).get_child(0).set_texture( load(demanded_sprite))
 
+# a function that allow the rotation of a body part, so it connect better.
+func rotate(index):
+	if (segments[index].get_rotation_degrees() == 360) :
+		segments[index].set_rotation_degrees(340)
+	else :
+		segments[index].set_rotation_degrees( segments[index].get_rotation_degrees() - 20)
+
+func rotate_reset(index):
+	segments[index].set_rotation_degrees(0)
+
+# A function that prepare the creature for the "test" mode.
+func set_movement_variables():
+	current_jump = 0
+	current_speed = 0
+	
+	for x in range(1, curr_length + 1):
+		# we use the "current body type" + the addequate "leg add" index to calculate which speed the leg give
+		if ((bodytype_index + leg_add[x]) >= segments.size()):
+			demanded_speed = 0 + leg_add[x] - 1
+		else :
+			demanded_speed = bodytype_index + leg_add[x]
+		
+		# once we know the demanded speed/jump, we can add it to current speed.
+		current_speed += Singleton.leg_speed_array[demanded_speed]
+
+# a function that allow to move the demanded segment to the desired location.
+func move_segment(index, x, y):
+	segments[index].set_position(Vector2(x,y))
+
+###################################################### Separation between func and signals
 
 func _on_change_head_pressed():
 	switch_head()
@@ -208,3 +257,51 @@ func _on_change_leg_2_pressed():
 
 func _on_Button_pressed():
 	switch_leg(3)
+
+func _on_Rotate_head_pressed():
+	rotate(0)
+
+func _on_Rotate_seg1_pressed():
+	rotate(1)
+
+func _on_Rotate_seg2_pressed():
+	rotate(2)
+
+func _on_Rotate_seg3_pressed():
+	rotate(3)
+
+func _on_game_test_sig():
+	set_movement_variables()
+	is_tested = true
+
+func _on_game_end_test_sig():
+	is_tested = false
+
+############################################################# function process, for the movements.
+
+func _physics_process(delta):
+	get_imput()
+	velocity = move_and_slide(velocity)
+
+func get_imput():
+	velocity = Vector2()
+	if Input.is_action_pressed("ui_right"):
+		velocity.x += 1
+	if Input.is_action_pressed("ui_left"):
+		velocity.x -= 1
+	
+	velocity = velocity.normalized() * current_speed
+
+
+
+func _on_new_position_new_position(x, y):
+	move_segment(0,x,y)
+
+func _on_new_position2_new_position(x, y):
+	move_segment(1,x,y)
+
+func _on_new_position3_new_position(x, y):
+	move_segment(2,x,y)
+
+func _on_new_position4_new_position(x, y):
+	move_segment(3,x,y)

@@ -277,11 +277,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Area2D" type="StaticBody2D" parent="."]
+[node name="static body" type="StaticBody2D" parent="."]
 position = Vector2( 503.085, 561.605 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="static body"]
 position = Vector2( 6.34961, -2.3811 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 510.494, 547.57 )
 shape = SubResource( 1 )
 [connection signal="end_test_sig" from="." to="body" method="_on_game_end_test_sig"]
 [connection signal="test_sig" from="." to="body" method="_on_game_test_sig"]
@@ -311,3 +317,4 @@ shape = SubResource( 1 )
 [connection signal="pressed" from="Change body type" to="body" method="_on_Change_body_type_pressed"]
 [connection signal="pressed" from="movement test" to="." method="_on_movement_test_pressed"]
 [connection signal="pressed" from="movement test end" to="." method="_on_movement_test_end_pressed"]
+[connection signal="body_entered" from="Area2D" to="body" method="_on_Area2D_body_entered"]

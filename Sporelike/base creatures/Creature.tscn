@@ -9,6 +9,7 @@
 extents = Vector2( 86.4185, 10 )
 
 [node name="body" type="KinematicBody2D"]
+collision/safe_margin = 0.8
 script = ExtResource( 1 )
 
 [node name="Head_link" type="Node2D" parent="."]

@@ -55,7 +55,8 @@ var direction = -1
 # a var that indicate if the creature has switched direction
 var switch_dir = false
 
-
+# a var that indicate if the creature can jump
+var can_jump = false
 ##############################################Separation between variables and functions
 
 func _ready():
@@ -292,8 +293,15 @@ func _physics_process(delta):
 	
 	if (is_tested):
 		velocity.y += gravity
+		
 		get_input()
-		velocity = move_and_slide(velocity, Vector2(0,1))
+		if Input.is_action_just_pressed("ui_up"):
+			if can_jump:
+				velocity.y -= current_jump
+				can_jump = false
+		
+		
+		velocity = move_and_slide(velocity, Vector2(0,0))
 		
 		
 		if (velocity.x != 0):
@@ -309,10 +317,7 @@ func get_input():
 	velocity.x = 0
 	var right = Input.is_action_pressed("ui_right")
 	var left = Input.is_action_pressed("ui_left")
-	var jump = Input.is_action_just_pressed("ui_up")
 	
-	if is_on_floor() and jump:
-		velocity.y += current_jump
 	if right:
 		velocity.x += current_speed
 	if left:
@@ -331,3 +336,5 @@ func _on_new_position3_new_position(x, y):
 func _on_new_position4_new_position(x, y):
 	move_segment(3,x,y)
 
+func _on_Area2D_body_entered(body):
+	can_jump = true

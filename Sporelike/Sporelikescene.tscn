@@ -287,7 +287,7 @@ shape = SubResource( 1 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 510.494, 547.57 )
+position = Vector2( 511.805, 557.871 )
 shape = SubResource( 1 )
 [connection signal="end_test_sig" from="." to="body" method="_on_game_end_test_sig"]
 [connection signal="test_sig" from="." to="body" method="_on_game_test_sig"]

@@ -48,6 +48,12 @@ onready var is_tested = false
 onready var gravity = 0.5 
 
 var velocity = Vector2()
+
+# a var that indicate the current direction. -1 if it goes right to left and 1 if left to right
+var direction = -1
+
+# a var that indicate if the creature has switched direction
+var switch_dir = false
 ##############################################Separation between variables and functions
 
 func _ready():
@@ -280,8 +286,18 @@ func _on_game_end_test_sig():
 ############################################################# function process, for the movements.
 
 func _physics_process(delta):
-	get_imput()
-	velocity = move_and_slide(velocity)
+	if (is_tested):
+		get_imput()
+		velocity = move_and_slide(velocity)
+		
+		if (velocity.x != 0):
+			if (sign(velocity.x) != direction):
+				switch_dir = true
+		
+		if (switch_dir == true):
+			direction *= -1
+			scale.x *= -1
+			switch_dir = false
 
 func get_imput():
 	velocity = Vector2()
@@ -291,7 +307,6 @@ func get_imput():
 		velocity.x -= 1
 	
 	velocity = velocity.normalized() * current_speed
-
 
 
 func _on_new_position_new_position(x, y):

@@ -45,7 +45,7 @@ var current_jump = 0
 # var that allow or block movements.
 onready var is_tested = false
 
-onready var gravity = 0.5 
+onready var gravity =  10
 
 var velocity = Vector2()
 
@@ -54,6 +54,8 @@ var direction = -1
 
 # a var that indicate if the creature has switched direction
 var switch_dir = false
+
+
 ##############################################Separation between variables and functions
 
 func _ready():
@@ -233,6 +235,7 @@ func set_movement_variables():
 		
 		# once we know the demanded speed/jump, we can add it to current speed.
 		current_speed += Singleton.leg_speed_array[demanded_speed]
+		current_jump += Singleton.leg_jump_array[demanded_speed]
 
 # a function that allow to move the demanded segment to the desired location.
 func move_segment(index, x, y):
@@ -286,9 +289,12 @@ func _on_game_end_test_sig():
 ############################################################# function process, for the movements.
 
 func _physics_process(delta):
+	
 	if (is_tested):
-		get_imput()
-		velocity = move_and_slide(velocity)
+		velocity.y += gravity
+		get_input()
+		velocity = move_and_slide(velocity, Vector2(0,1))
+		
 		
 		if (velocity.x != 0):
 			if (sign(velocity.x) != direction):
@@ -299,14 +305,18 @@ func _physics_process(delta):
 			scale.x *= -1
 			switch_dir = false
 
-func get_imput():
-	velocity = Vector2()
-	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1
+func get_input():
+	velocity.x = 0
+	var right = Input.is_action_pressed("ui_right")
+	var left = Input.is_action_pressed("ui_left")
+	var jump = Input.is_action_just_pressed("ui_up")
 	
-	velocity = velocity.normalized() * current_speed
+	if is_on_floor() and jump:
+		velocity.y += current_jump
+	if right:
+		velocity.x += current_speed
+	if left:
+		velocity.x -= current_speed
 
 
 func _on_new_position_new_position(x, y):
@@ -320,3 +330,4 @@ func _on_new_position3_new_position(x, y):
 
 func _on_new_position4_new_position(x, y):
 	move_segment(3,x,y)
+

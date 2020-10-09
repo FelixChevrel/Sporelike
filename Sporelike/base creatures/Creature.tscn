@@ -6,7 +6,7 @@
 [ext_resource path="res://sprite/catterpillar head.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 13.6723, 10 )
+extents = Vector2( 86.4185, 10 )
 
 [node name="body" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -51,5 +51,5 @@ position = Vector2( 0.50631, 25.0649 )
 texture = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.26231, -0.087101 )
+position = Vector2( 60.82, 32.1265 )
 shape = SubResource( 1 )
